@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react'
+import API_URL from '../api'
 
 function CheckInOut() {
   const [memberId, setMemberId] = useState('')
@@ -8,7 +9,7 @@ function CheckInOut() {
  const [visits, setVisits] = useState([])
 
  useEffect(() => {
-  fetch('http://localhost:8080/api/visits')
+  fetch(`${API_URL}/api/visits`)
     .then((response) => response.json())
     .then((data) => setVisits(data))
     .catch((error) => {
@@ -33,7 +34,7 @@ function CheckInOut() {
   try {
     // Fetch registered members from backend
     const memberResponse = await fetch(
-      'http://localhost:8080/api/members'
+      `${API_URL}/api/members`
     )
 
     if (!memberResponse.ok) {
@@ -72,7 +73,7 @@ function CheckInOut() {
     }
 
     const response = await fetch(
-      'http://localhost:8080/api/visits',
+      `${API_URL}/api/visits`,
       {
         method: 'POST',
         headers: {
@@ -106,7 +107,7 @@ function CheckInOut() {
   const handleCheckOut = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/visits/${id}/checkout`,
+      `${API_URL}/api/visits/${id}/checkout`,
       {
         method: 'PUT',
         headers: {

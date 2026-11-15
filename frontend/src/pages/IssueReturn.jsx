@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react'
+import API_URL from '../api'
 
 function getLocalDate(date = new Date()) {
   const year = date.getFullYear()
@@ -31,9 +32,9 @@ function IssueReturn() {
     try {
       const [booksResponse, membersResponse, recordsResponse] =
         await Promise.all([
-          fetch('http://localhost:8080/api/books'),
-          fetch('http://localhost:8080/api/members'),
-          fetch('http://localhost:8080/api/borrow-records')
+          fetch(`${API_URL}/api/books`),
+          fetch(`${API_URL}/api/members`),
+          fetch(`${API_URL}/api/borrow-records`)
         ])
 
       if (!booksResponse.ok || !membersResponse.ok || !recordsResponse.ok) {
@@ -97,7 +98,7 @@ const handleIssueBook = async () => {
   }
 
   try {
-    const response = await fetch('http://localhost:8080/api/borrow-records', {
+    const response = await fetch(`${API_URL}/api/borrow-records`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -143,7 +144,7 @@ const handleReturnBook = async (recordId) => {
 
   try {
     const response = await fetch(
-      `http://localhost:8080/api/borrow-records/${recordId}/return`,
+      `${API_URL}/api/borrow-records/${recordId}/return`,
       {
         method: 'PUT',
         headers: {

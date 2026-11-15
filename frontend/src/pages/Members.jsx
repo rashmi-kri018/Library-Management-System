@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import API_URL from '../api'
 
 function Members() {
     const [memberName, setMemberName] = useState('')
@@ -9,7 +10,7 @@ function Members() {
     const [members, setMembers] = useState([])
 
     useEffect(() => {
-      fetch('http://localhost:8080/api/members')
+      fetch(`${API_URL}/api/members`)
       .then((response) => response.json())
       .then((data) => setMembers(data))
       .catch((error) => {
@@ -40,7 +41,7 @@ function Members() {
   }
 
   try {
-    const response = await fetch('http://localhost:8080/api/members', {
+    const response = await fetch(`${API_URL}/api/members`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -69,7 +70,7 @@ function Members() {
 const handleDeleteMember = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/members/${id}`,
+      `${API_URL}/api/members/${id}`,
       {
         method: 'DELETE'
       }
@@ -121,7 +122,7 @@ const handleUpdateMember = async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:8080/api/members/${editingMemberId}`,
+      `${API_URL}/api/members/${editingMemberId}`,
       {
         method: 'PUT',
         headers: {

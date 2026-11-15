@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from 'react'
+import API_URL from '../api'
 
 function VisitHistory() {
   const [visits, setVisits] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
 
  useEffect(() => {
-  fetch('http://localhost:8080/api/visits')
+  fetch(`${API_URL}/api/visits`)
     .then((response) => response.json())
     .then((data) => setVisits(data))
     .catch((error) => {
