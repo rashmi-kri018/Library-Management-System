@@ -8,7 +8,7 @@ function Books() {
  const [books, setBooks] = useState([])
 
 useEffect(() => {
-  fetch('http://localhost:8080/api/books')
+  fetch(`${API_URL}/api/books`)
     .then((response) => response.json())
     .then((data) => setBooks(data))
     .catch((error) => {
@@ -40,7 +40,7 @@ const newBook = {
   status: 'Available'
 }
 
-fetch('http://localhost:8080/api/books', {
+fetch(`${API_URL}/api/books`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ return
 const handleDeleteBook = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/books/${id}`,
+      `${API_URL}/api/books/${id}`,
       {
         method: 'DELETE'
       }
@@ -137,7 +137,7 @@ const handleUpdateBook = async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:8080/api/books/${editingBookId}`,
+      `${API_URL}/api/books/${editingBookId}`,
       {
         method: 'PUT',
         headers: {

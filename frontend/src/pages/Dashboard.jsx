@@ -20,10 +20,10 @@ useEffect(() => {
     try {
       const [booksResponse, membersResponse, visitsResponse, recordsResponse] =
         await Promise.all([
-          fetch('http://localhost:8080/api/books'),
-          fetch('http://localhost:8080/api/members'),
-          fetch('http://localhost:8080/api/visits'),
-          fetch('http://localhost:8080/api/borrow-records')
+          fetch(`${API_URL}/api/books`),
+          fetch(`${API_URL}/api/members`),
+          fetch(`${API_URL}/api/visits`),
+          fetch(`${API_URL}/api/borrow-records`)
         ])
 
       if (
